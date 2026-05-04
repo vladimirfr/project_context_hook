@@ -24,8 +24,9 @@ class ProjectContextHookApp:
         if RepositoryContext.has_agents_file(root):
             NotificationUtility.notify(
                 payload.get("model", "Codex"),
-                f"AGENTS.md is already exists in {str(root)}",
+                f"AGENTS.md already exists in {str(root)}",
             )
+            self._write_hook_output(payload, "")
             return
 
         composer = ComposerUtility(root / "composer.lock")
@@ -34,6 +35,7 @@ class ProjectContextHookApp:
 
         if not project_info:
             NotificationUtility.notify("Codex", "Unknown project type")
+            self._write_hook_output(payload, "")
             return
 
         ddev = DdevUtility(root)

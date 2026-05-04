@@ -1,4 +1,3 @@
-DATETIME: $DATETIME
 {% if PROJECT %}
 Project:
 $PROJECT

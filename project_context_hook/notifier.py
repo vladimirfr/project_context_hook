@@ -12,6 +12,7 @@ class NotificationUtility:
             subprocess.run(
                 ["notify-send", title, message],
                 check=False,
+                capture_output=True,
                 timeout=3,
             )
         except OSError:
